@@ -1,0 +1,101 @@
+﻿@model ProyectoFinal.ViewModels.ArticuloVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear Articulo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Articulo.Volumen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Articulo.Volumen, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Articulo.Volumen, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Articulo.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Articulo.Numero, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Articulo.Numero, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Articulo.Año, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Articulo.Año, new { htmlAttributes = new { @type = "DATE", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Articulo.Año, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Articulo.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+
+
+            @Html.EditorFor(model => model.Articulo.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Articulo.Titulo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Articulo.Contenido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Articulo.Contenido, new { htmlAttributes = new { @class = "form-control" } })
+
+
+            @Html.ValidationMessageFor(model => model.Articulo.Contenido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="col-8">
+        Tipo de articulos
+
+        @Html.DropDownListFor(u => u.Articulo.TipoDeArticulo_Id, Model.ListaTiposDeArticulo, "--Lista de TiposDeArticulo--", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ListaTiposDeArticulo, "", new { @class = "text-danger" })
+    </div>
+    <br>
+
+
+    <div class="col-8">
+        Tipo de categoria
+
+        @Html.DropDownListFor(u => u.Articulo.Categoria_Id, Model.ListaCategoriaDeArticulo, "--Lista de Categoria--", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ListaCategoriaDeArticulo, "", new { @class = "text-danger" })
+    </div>
+    <br>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

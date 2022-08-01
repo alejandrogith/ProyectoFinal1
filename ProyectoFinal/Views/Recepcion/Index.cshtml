@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProyectoFinal.Models.RecepcionEncabezado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Recepcion Articulos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Articulo.Volumen)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Articulo.Numero)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Articulo.Año)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Articulo.Titulo)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRecepcion)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Evaluciones)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Articulo.Volumen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Numero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Año)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Titulo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaRecepcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Evaluciones)
+    </td>
+    <td>
+        @ViewData["Evaluado"]
+    </td>
+
+
+    @if (item.Estado == 0)
+    {
+        <td>
+            @Html.ActionLink("Evaluar", "Evaluar", new { id = item.Id }) |
+        </td>
+    }
+
+
+</tr>
+}
+
+</table>

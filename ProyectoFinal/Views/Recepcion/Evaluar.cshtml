@@ -1,0 +1,145 @@
+﻿@model ProyectoFinal.ViewModels.RecepcionDetalleVM
+@{
+    ViewBag.Title = "Evaluar";
+}
+
+<h2>Evaluacion de Articulo</h2>
+
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.RecepcionDetalle.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RecepcionDetalle.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RecepcionDetalle.Titulo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RecepcionDetalle.Contenido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RecepcionDetalle.Contenido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RecepcionDetalle.Contenido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.RecepcionDetalle.RecepcionEncabezado_Id)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.RecepcionDetalle.Evaluador_Id)
+
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Unirse a la Evaluacion" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="container">
+    <h4>Observaciones</h4>
+
+</div>
+
+
+
+
+
+
+
+
+
+<form  action="~/Recepcion/Comentario" method="post">
+
+    <input type="hidden" class="form-control" value="@Model.RecepcionDetalle.RecepcionEncabezado_Id" name="RecepcionEncabezado_Id" />
+    <input type="hidden" class="form-control" value="@Model.RecepcionDetalle.Evaluador_Id" name="Evaluador_Id" />
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <label for="exampleInputPassword1">Escribe tu observacion</label>
+            <input type="text" class="form-control"  name="Observacion" />
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+
+    </div>
+</form>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecepcionDetalle.NombreEvaluador)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecepcionDetalle.Observacion)
+                    </th>
+
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.ListaRecepcionDetalles)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreEvaluador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observacion)
+                        </td>
+
+
+                    </tr>
+                }
+
+            </table>
+
+
+
+
+
+            <a class="btn btn-success" href="~/Recepcion/Evaluado?cond=1&enc=@Model.RecepcionDetalle.RecepcionEncabezado_Id" role="button">Abrobado</a>
+            <a class="btn btn-warning" href="~/Recepcion/Evaluado?cond=2&enc=@Model.RecepcionDetalle.RecepcionEncabezado_Id" role="button">Abrobado con observaciones</a>
+            <a class="btn btn-danger" href="~/Recepcion/Evaluado?cond=3&enc=@Model.RecepcionDetalle.RecepcionEncabezado_Id" role="button">Rechazado</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

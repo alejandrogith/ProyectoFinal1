@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Articulo>
+
+@{
+    ViewBag.Title = "ObtenerUsuarios";
+}
+
+<h4>Articulos</h4>
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+    
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Volumen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Año)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Contenido)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DOI)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.NombreTipoDeArticulo)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCategoriadearticulo)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            Accion
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Volumen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Numero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Año)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Titulo)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Contenido)
+
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.DOI)
+    </td>
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreTipoDeArticulo)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreCategoriadearticulo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estado)
+    </td>
+
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })|
+
+
+        @if (item.Estado!="Aprobado" && item.Estado != "Rechazado")
+        {
+            @Html.ActionLink("Enviar a recepcion", "Recepcion", new { id = item.Id })
+        }
+
+
+
+
+    </td>
+</tr>
+    }
+
+</table>

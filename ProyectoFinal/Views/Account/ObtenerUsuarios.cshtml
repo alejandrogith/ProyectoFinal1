@@ -1,0 +1,62 @@
+﻿@using ProyectoFinal.Utilidades;
+@model IEnumerable<ProyectoFinal.Models.Usuario>
+
+@{
+    ViewBag.Title = "ObtenerUsuarios";
+}
+
+<h4>Administrar roles</h4>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+
+        <th>
+            Rol Actual
+        </th>
+
+        <th>
+            Administrar Rol
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreRol)
+            </td>
+
+
+
+
+            <td>
+                <a class="btn btn-primary" href="AsignarRoles?userName=@item.UserName&rol=@RolUsuario.Admin" role="button">@RolUsuario.Admin</a>
+                <a class="btn btn-success" href="AsignarRoles?userName=@item.UserName&rol=@RolUsuario.Evaluador" role="button">@RolUsuario.Evaluador</a>
+                <a class="btn btn-info" href="AsignarRoles?userName=@item.UserName&rol=@RolUsuario.Autor" role="button">@RolUsuario.Autor</a>
+            </td>
+        </tr>
+    }
+
+</table>

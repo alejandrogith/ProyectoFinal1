@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProyectoFinal.Models.RecepcionEncabezado>
+
+@{
+    ViewBag.Title = "Notificaciones";
+}
+
+<h2>Notificaciones</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Articulo.Titulo)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRecepcion)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Articulo.Titulo)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRecepcion)
+        </td>
+
+        <td>
+            @Html.ActionLink("VerObservaciones", "Observaciones", new { id=item.Id }) 
+
+        </td>
+    </tr>
+}
+
+</table>
